@@ -1,0 +1,15 @@
+name: Movie API tests
+on: 
+  pull_request:
+jobs:
+  build_and_run:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Build the stack
+        run: |
+          cp .env.test .env
+          docker-compose -f docker-compose.ci.yaml build --no-cache
+          docker-compose -f docker-compose.ci.yaml up -d
+          docker-compose -f docker-compose.ci.yaml exec -T node npm install
+          docker-compose -f docker-compose.ci.yaml exec -T node npm run test
