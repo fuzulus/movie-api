@@ -28,7 +28,7 @@ services:
       MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
     volumes:
       - ./database:/data/db
-      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./mongo-init.test.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
       - movie-api-network
 
