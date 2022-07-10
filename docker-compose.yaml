@@ -1,10 +1,11 @@
 version: "3.2"
 services:
-  app:
-    command: node src/server.js
+  node:
+    container_name: ${NODE_CONTAINER_NAME}
     build:
       context: .
       dockerfile: Dockerfile
+      target: development
     ports:
       - published: ${APP_PORT:-3000}
         target: ${APP_PORT}
@@ -12,3 +13,33 @@ services:
       - .:/app/
     environment:
       JWT_SECRET: ${JWT_SECRET}
+    depends_on:
+      - mongo
+    networks:
+      - movie-api-network
+
+  mongo:
+    container_name: ${MONGO_CONTAINER_NAME}
+    image: mongo
+    restart: always
+    volumes:
+      - ./database:/data/db
+    networks:
+      - movie-api-network
+
+  mongo-express:
+    container_name: ${MONGO_EXPRESS_CONTAINER_NAME}
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${ME_CONFIG_MONGODB_ADMINUSERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${ME_CONFIG_MONGODB_ADMINPASSWORD}
+      ME_CONFIG_MONGODB_URL: ${ME_CONFIG_MONGODB_URL}
+    networks:
+      - movie-api-network
+
+networks:
+  movie-api-network:
+    driver: bridge
