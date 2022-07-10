@@ -1,0 +1,21 @@
+name: Movie API tests
+on: 
+  pull_request:
+jobs:
+  build_and_run:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.register_runner.outputs.runner_name }}
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Build the stack
+        run: |
+          cp .env.test .env
+          docker-compose -f docker-compose.ci.yaml build --no-cache
+          docker-compose -f docker-compose.ci.yaml up -d
+  tests:
+    runs-on: ${{ needs.build_and_run.outputs.output1 }}
+    needs: [ build_and_run ]
+    steps: 
+      - name: Run the tests
+        run: echo "Hello world"
