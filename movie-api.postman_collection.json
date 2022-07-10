@@ -1,0 +1,402 @@
+{
+	"info": {
+		"_postman_id": "695ca200-e4b9-40b5-99f5-18272799a5fb",
+		"name": "Movie API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16542429"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Authenticate user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"basic-thomas\",\n    \"password\": \"sR-_pcoow-27-6PAwCD8\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/auth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Decode token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v1/token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Decode token - success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v1/token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f-UQQzNAzrBVQB9fNz26DfhIcmLUs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Jul 2022 16:59:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId\": \"123\",\n    \"role\": \"basic\"\n}"
+						},
+						{
+							"name": "Decode token - timeout",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v1/token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"token"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c-vYKh+mmRAJUFJeuH9TX405wRbsw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Jul 2022 16:59:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 401,\n    \"message\": \"Invalid username or password.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "movies",
+			"item": [
+				{
+					"name": "List movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v1/movies",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"movies"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List movies",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v1/movies",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"movies"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "347"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15b-APuXWwKcngqByuLJSEfZbX5cytE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Jul 2022 20:05:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"6dec413c-a612-4044-996e-190a1bdd3e2f\",\n        \"userId\": \"123\",\n        \"title\": \"Men in Black\",\n        \"releaseDate\": \"02 Jul 1997\",\n        \"genre\": \"Action, Adventure, Comedy\",\n        \"director\": \"Barry Sonnenfeld\"\n    },\n    {\n        \"id\": \"1d7af4ee-bfff-4902-90f4-fa85c8eaa4dc\",\n        \"userId\": \"123\",\n        \"title\": \"Deadpool\",\n        \"releaseDate\": \"12 Feb 2016\",\n        \"genre\": \"Action, Adventure, Comedy\",\n        \"director\": \"Tim Miller\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Deadpool\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/movies",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"movies"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create movie",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Men in black\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/movies",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"movies"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "177"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b1-vAiPi+nFi7Qyc6NJDMhgYGTyo4w\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Jul 2022 18:54:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"1d2fae62-dd2e-4825-acad-b25aafc87180\",\n    \"userId\": \"123\",\n    \"title\": \"Men in Black\",\n    \"releaseDate\": \"02 Jul 1997\",\n    \"genre\": \"Action, Adventure, Comedy\",\n    \"director\": \"Barry Sonnenfeld\"\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMjMiLCJyb2xlIjoiYmFzaWMiLCJpYXQiOjE2NTc0NzMyNjEsImV4cCI6MTY1NzQ3NTA2MSwiaXNzIjoiaHR0cHM6Ly93d3cubmV0Z3VydS5jb20vIiwic3ViIjoiMTIzIn0.BoWP-WvCiY_XjxIeTYK9ksR_J4k3Y2lIoB3WmwEdmMo",
+			"type": "string"
+		}
+	]
+}
